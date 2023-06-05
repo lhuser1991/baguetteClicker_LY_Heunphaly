@@ -1,16 +1,19 @@
 <div class="center-items col-category">
-    <div class="space-category-details">
+    <div class="space-category-details" *ngFor="let category of descCategories">
+        <h3>{{category.name}}</h3>
+        <p>Nombre : {{category.total}}</p>
+        <p>Production : {{category.eachSecond | pluralize:'pain par seconde':titlesList[1]}} <!-- {{titlesList[1]}}</p> -->
     </div>
 </div>
 <div class="center-items centered-category">
     <h2 class="title-frame">
-        {{totalGlobal }} {{ titlesList[0]}}
+        {{totalGlobal | number }} {{ titlesList[0]}}
     </h2>
-    <span class="bakery-frame-color small-text">
-        {{totalPerSecond}} {{ titlesList[1]}}
+    <span class="bakery-frame-color small-text" *ngIf="true">
+        {{totalPerSecond | pluralize:'pain par seconde':titlesList[1]}} <!-- {{ titlesList[1]}} -->
     </span>
     <div class="center-items">
-        <a>
+        <a (click)="onClickBread()">
             <img class="bread-clicker" [src]="breadClicker[0]" [alt]="breadClicker[1]" />
         </a>
     </div>
@@ -18,4 +21,5 @@
     </div>
 </div>
 <div class="center-items col-category">
+    <button [disabled]="type.inactive" (click)="buyItem(type.id)" *ngFor="let type of categories">{{type.name}}</button>
 </div>

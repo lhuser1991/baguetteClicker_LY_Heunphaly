@@ -50,11 +50,34 @@ export class MainCategoryComponent implements OnInit {
     }
   }
 
-  onClickBread(): void {}
+  onClickBread(): void {
+    this.clickValue = 1;
+    this.totalGlobal += this.clickValue; 
+    this.checkIfActive();
+  }
 
-  buyItem(): void {}
+  buyItem(itemId: number): void {
+    // var price: number = this.categories[itemId].price * this.totalGlobal;
+    this.categories[itemId].price = Math.round(this.categories[itemId].price*1.075);
+    this.descCategories[itemId].total ++;
 
-  addBreadPerSecondToTotal(): void {}
+    if(this.descCategories[itemId].name !== "Clics") {
+      this.descCategories[itemId].eachSecond = 5*Math.pow(2,itemId)*this.descCategories[itemId].total;
+    }
+    this.totalPerSecond = this.totalPerSecond + 5*Math.pow(2,itemId);
+    
+    this.checkIfActive();
+    console.log(this.categories[itemId]);
+  }
 
-  ngOnDestroy(): void {}
+  addBreadPerSecondToTotal(): void {
+    if(this.totalPerSecond > 0) {
+      this.totalGlobal = this.totalGlobal + this.totalPerSecond;
+    }
+    this.checkIfActive();
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.intervalId);
+  }
 }
