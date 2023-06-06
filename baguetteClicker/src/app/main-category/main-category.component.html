@@ -7,7 +7,12 @@
 </div>
 <div class="center-items centered-category">
     <h2 class="title-frame">
-        {{totalGlobal | number }} {{ titlesList[0]}}
+        <!-- 
+            L'ajout du pipe number à coté de pluralize ne fonctionnait pas pour afficher 
+            la virgule qui sépare le chiffre des centaines et le chiffre des milliers.
+            J'ai du ajuster le format du nombre avec toLocaleString dans le fichier pluralize.pipe.ts.
+        -->
+        {{totalGlobal | pluralize:'pain':titlesList[0]}}  <!-- {{ titlesList[0]}} -->
     </h2>
     <span class="bakery-frame-color small-text" *ngIf="true">
         {{totalPerSecond | pluralize:'pain par seconde':titlesList[1]}} <!-- {{ titlesList[1]}} -->

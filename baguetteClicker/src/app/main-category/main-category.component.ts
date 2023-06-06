@@ -57,7 +57,6 @@ export class MainCategoryComponent implements OnInit {
   }
 
   buyItem(itemId: number): void {
-    // var price: number = this.categories[itemId].price * this.totalGlobal;
     this.categories[itemId].price = Math.round(this.categories[itemId].price*1.075);
     this.descCategories[itemId].total ++;
 
@@ -67,7 +66,7 @@ export class MainCategoryComponent implements OnInit {
     this.totalPerSecond = this.totalPerSecond + 5*Math.pow(2,itemId);
     
     this.checkIfActive();
-    console.log(this.categories[itemId]);
+    // console.log(this.categories[itemId]);
   }
 
   addBreadPerSecondToTotal(): void {

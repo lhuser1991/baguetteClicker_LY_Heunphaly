@@ -8,10 +8,12 @@ export class PluralizePipe implements PipeTransform {
   transform(value: number, singular: string, plural: string): string {
     var phrase: string ="";
     if(value > 1) {
-      phrase = value + " " + plural;
+      var nb: string = value.toLocaleString("en-US");
+      phrase = nb + " " + plural;
       return phrase;
     } else {
-      phrase = value + " " + singular;
+      var nb: string = value.toLocaleString("en-US");
+      phrase = nb + " " + singular;
       return phrase;
     }
   }
